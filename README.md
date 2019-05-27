@@ -1,2 +1,1 @@
-# hhmh
-Hyperheuristics using metaheuristics
+# Hyperheuristics using metaheuristics project

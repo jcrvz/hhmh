@@ -1,0 +1,40 @@
+Beginning:
+hasInner = false;
+if ~isempty(varargout), hasInner = true; end 
+
+line 74:
+allInternals(Na) = struct('solution',-1,'details',-1);
+
+line 84:
+% Initial values
+for i = 1 : Na, 
+	if hasInner
+		[fX(i,1), internalSol, internalDetails] = fObj(X(i,:)); 
+		allInternals(i) = struct('solution',internalSol,'details',internalDetails);
+	else
+		fX(i,1) = fObj(X(i,:)); 
+	end
+	
+end
+fPi     = fX; Pi = X;
+
+line 99:
+varargout{1} = allInternals(gi);
+
+
+line 159:
+if hasInner
+	[fX(i), internalSol, internalDetails] = fObj(X(i,:)); 
+	allInternals(i).solution = internalSol
+	allInternals(i).details = internalDetails;
+else
+	fX(i)   = fObj(X(i,:));
+end
+
+
+line 174:
+if fPg < fPg_, 
+	Pg = X(g,:);
+	if hasInner
+		varargout{1} = allInternals(g);
+	end

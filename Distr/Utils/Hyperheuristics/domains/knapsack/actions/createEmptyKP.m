@@ -1,0 +1,3 @@
+function [knapsack] = createEmptyKP(capacity)
+ knapsack = struct('freeCapacity',capacity,'maxWeight',capacity,'items',[],...
+                    'profit',0,'weight',0,'isValid',true);

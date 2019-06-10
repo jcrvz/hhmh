@@ -4,18 +4,8 @@ clc
 clear
 close all
 
-if ismac
-    % Code to run on Mac platform
-    addpath(genpath('../../../Utils'));
-elseif isunix
-    % Code to run on Linux platform
-    addpath(genpath('../../../Utils'));
-elseif ispc
-    % Code to run on Windows platform
-    addpath(genpath('..\..\..\Utils'));
-else
-    error('Platform not supported')
-end
+% addpath(genpath('..\..\..\Utils')); % For Windows
+addpath(genpath('../../../Utils')); % For MACs?
 
 rng(0) % resets seed for debugging
 
@@ -66,13 +56,10 @@ end
 % Training parameters
 
 % - General parameters
-parameters.verboseMode      = true; % Print mode of UPSO
-parameters.maxIter          = 60; % Default: min(100,10*NUMBER_OF_VARIABLES).
-% parameters.maxStagIter      = min(30,0.1*parameters.maxIter); % Default
-parameters.maxStagIter      = parameters.maxIter/20; 
-% parameters.randomSeed       = -1; % Default
-% parameters.knownMin         = -inf; % Default
-parameters.stagTol          = 1e-3;
+parameters.verboseMode      = false;
+parameters.maxIter          = 20; % Default: min(100,10*NUMBER_OF_VARIABLES).
+%parameters.maxStagIter      = min(30,0.1*parameters.maxIter); % Default
+%parameters.maxStagIter      = parameters.maxIter/20; 
 
 % - Specific UPSO parameters
 parameters.populationSize   = 20;
@@ -84,16 +71,20 @@ parameters.selfConf         = 2.833;
 % parameters.chiFactor        = 2*parameters.kappaFactor/...
 %     abs(2-parameters.phiFactor-sqrt(parameters.phiFactor^2-4*parameters.phiFactor))
 
-% - Selector parameters
-parameters.numFeatures      = nbFeatures;
-parameters.numRules         = nbRules; % +1 because of actions
-parameters.Nrep             = 1; % Number of repetitions for training
-parameters.printMode        = false;
+parameters.TOL   = 1;
+parameters.MITE  = 20; % 60 (def)
+parameters.MSAT  = parameters.MITE / 20;
+parameters.SEED  = -1;
+parameters.knownMin = -inf;
+parameters.numFeatures = nbFeatures;
+parameters.numRules = nbRules; % +1 because of actions
+parameters.Nrep = 1; % Number of repetitions for training
+parameters.printMode = false;
 
 % Trains selector
 fprintf('Training over %d instances with %d rules...\n', length(trainIndex), nbRules);
 [fP,P,details] = KnapsackTrainSelector(fObj, parameters); 
-fprintf('Training complete in %d seconds!!!\n', details.elapsedTime);
+fprintf('Training complete in %d seconds!!!\n', details.time);
 
 % Prints best results of training
 fP,P, 

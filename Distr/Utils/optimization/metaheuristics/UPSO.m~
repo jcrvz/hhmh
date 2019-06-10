@@ -1,3 +1,4 @@
+%
 %   UNIFIED PARTICLE SWARM OPTIMISATION ALGORITHM
 %   Version 3.0
 %                                                              
@@ -130,11 +131,10 @@
 % =====================================================================================
 %
 % % Define an objective function
-%   func = @(x) norm(x)^2;
+%   sf = @(x) norm(x)^2;
 %
-% % Run the method setting a three dimensional problem
-%   [position,fitness,details] = UPSO(func, ones(3,1)*[-10 10],struct('visualMode',true))
-%
+% % Run the method
+%   [globalBestPosition,globalBestFitness,details] = UPSO(sf, ones(3,1)*[-10 10],struct('visualMode',true))
 function [globalBestPosition,globalBestFitness,details, varargout] = ...
     UPSO(objectiveFunction, popInitRange, par)
 

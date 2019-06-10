@@ -1,25 +1,6 @@
 function [fPg, Pg, details] = KnapsackTrainSelector(fObj, parameters)
 % --- Base parameters
-if nargin < 2
-    % - Specific UPSO parameters
-    parameters.populationSize   = 20;
-    parameters.unifyFactor      = 0.2;
-    parameters.globalConf       = 2.833;
-    parameters.selfConf         = 2.833;
-    % parameters.phiFactor        = parameters.globalConf + parameters.selfConf;
-    % parameters.kappaFactor      = 1;
-    % parameters.chiFactor        = 2*parameters.kappaFactor/...
-    %     abs(2-parameters.phiFactor-sqrt(parameters.phiFactor^2-4*parameters.phiFactor))
-    
-    parameters.maxIter          = 60; % Default: min(100,10*NUMBER_OF_VARIABLES).
-    % parameters.maxStagIter      = min(30,0.1*parameters.maxIter); % Default
-    parameters.maxStagIter      = parameters.maxIter/20;
-    % parameters.randomSeed       = -1; % Default
-    % parameters.knownMin         = -inf; % Default
-    
-    parameters.verboseMode      = false; % Print mode of UPSO
-    
-    % - od parameters
+% if nargin < 2
 %     parameters.NAG   = 20;
 %     parameters.U     = 0.2;
 %     parameters.CG    = 2.833;
@@ -30,14 +11,13 @@ if nargin < 2
 %     parameters.MITE  = 60;
 %     parameters.MSAT  = parameters.MITE / 20;
 %     parameters.SEED  = -1;
+%     
 %     parameters.knownMin = -inf;
-    % -
-    
-    parameters.numFeatures = 3;
-    parameters.numRules = 2; % 3 features, 2 rules
-    parameters.Nrep = 1;
-    parameters.printMode = true;
-end
+%     parameters.numFeatures = 3;
+%     parameters.numRules = 2; % 3 features, 2 rules
+%     parameters.Nrep = 1;
+%     parameters.printMode = true;
+% end
 
 printMode = parameters.printMode;
 

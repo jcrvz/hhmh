@@ -1,3 +1,6 @@
 function Y = Jong(X)  
-  Y = sum(X.^2 , 2); % Sweeps columns and sum
+% X must be a vector
+X = X(:);
+
+  Y = sum(X.^2); % Sweeps columns and sum
 end
